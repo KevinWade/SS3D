@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
  * There is a hands container, that the interaction system connects to, that defines what items the player is currently holding.
  */
 [RequireComponent(typeof(Inventory))]
-public class Hands : Interaction, Tool
+public class Hands : Interactor, Tool
 {
     public delegate void OnHandChange(int selectedHand);
 
@@ -21,6 +21,10 @@ public class Hands : Interaction, Tool
     [System.NonSerialized]
     public int selectedHand = 0;
     public event OnHandChange onHandChange;
+
+    private void Awake() {
+        inventory = GetComponent<Inventory>();
+    }
 
     /**
      * The default hand interaction when no object is present.
@@ -80,10 +84,6 @@ public class Hands : Interaction, Tool
         attach.range = handRange;
     }
 
-    private void Awake()
-    {
-        inventory = GetComponent<Inventory>();
-    }
     public override void OnStartClient()
     {
         // Find the indices in the hand container corresponding to the correct slots

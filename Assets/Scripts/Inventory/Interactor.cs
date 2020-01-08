@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 /**
  * Allows the player to interact with things
  */
-public class Interaction : NetworkBehaviour
+public class Interactor : NetworkBehaviour
 {
     public Tool selectedTool;
 
